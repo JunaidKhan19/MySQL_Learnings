@@ -1,0 +1,41 @@
+Assignment 05
+
+1) Write a query that will give you all orders for more than Rs. 1,000.
+select onum, amt, odate, cnum, snum from orders where amt > 1000;
+
+2) Write a query that will give you the names and cities of all salespeople in London with a commission above .10.
+select sname, city from salespeople where city = "London" and comm > .10;
+
+3) Write a query on the Customers table whose output will exclude all customers with a rating <= 100, unless they are located in Rome.
+select cnum, cname, city, rating, snum from customers where rating > 100 or city = "Rome";
+
+4) What will be the output from the following query?
+Select * from Orders
+where (amt < 1000 OR
+NOT (odate = ‘1990-10-03’
+AND cnum > 2003));
+
+ans) the output will show all the rows that satisfies either of the condition
+	i) if amount is less than 1000
+	ii) if orderdate is 1990-10-03 and customers number is 2003.
+so the query first checks the orders date if it is on 1990-10-03 then if it is on the date so the cnum should be 2003 or less than it.
+if this is satisfied then checks for amount if the value is less than 1000, If value exceeds the amount in query but order date is 1990-10-03 with cnum 2003 then it is included.  
+hence orders on '1990-10-03' with a cnum greater than 2003 and amount ≥ 1000 are only excluded.
+
+5) What will be the output of the following query?
+Select * from Orders
+where NOT ((odate = ‘1990-10-03’ OR snum
+>1006) AND amt >= 1500);
+
+ans) the statement first checks if the order is on date 1990-10-03 or the snum is greater than 1006; either one
+then checks if amount is greater than or equal to 1500.
+if the combined value is (odate 1990-10-03 & amt >= 1500) or (snum > 1006 & amt >= 1500) then the query isn't selecting that row
+
+The query excludes all orders where the amount is ≥ 1500 and either the order date is 1990-10-03 or the salesperson number (snum) is greater than 1006.
+All other rows are selected.
+
+
+6) What is a simpler way to write this query?
+Select snum, sname, city, comm From Salespeople where (comm > .12 OR comm <.14);
+
+ans) Select snum, sname, city, comm From Salespeople where comm between .12 and .14;

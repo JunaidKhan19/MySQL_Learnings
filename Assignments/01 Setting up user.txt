@@ -1,0 +1,17 @@
+--> creating new user:
+
+--> Show all databases:
+
+--> creating new db: 
+create schema assignments;
+
+--> using that db:
+use assignments;
+
+--> granting the new user privileges on this db:
+grant all privileges on assignments.* TO 'junaid'@'localhost';
+flush privileges;
+
+
+
+

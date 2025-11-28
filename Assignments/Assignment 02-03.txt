@@ -1,0 +1,29 @@
+Assignment 02
+
+1) Which field of the Customers table is the primary key?
+ans) cnum
+
+2) What is the 4th column of the Customers table?
+ans) rating
+
+3) What is another word for row? For column?
+ans) Row: tuple, entity, opportunity
+     Column: key, method, attribute
+     Table: Relation, entity class, Matrix, applet
+
+4) Why isn’t it possible to see the first five rows of a table?
+ans) It is not possible to see the “first five rows” of a table because a table in a relational database 
+     has no built-in or guaranteed ordering of rows. Tables represent unordered sets of records, 
+     so there is no concept of “first” or “last” rows unless an order is explicitly specified.
+     The relational model (ANSI SQL standard) treats a table as a set, and sets do not preserve order.
+     The database engine may store and retrieve rows in any physical order depending on indexing, storage, or optimization.
+     Therefore, asking for “first 5 rows” only makes sense after defining how rows should be ordered.
+
+=======================================================================================================================================
+Assignment 03
+
+1) Does ANSI recognize the data type DATE?
+ans) Yes.
+
+2) Which subdivision of SQL is used to insert values in tables?
+ans) DML
