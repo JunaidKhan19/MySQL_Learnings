@@ -1,0 +1,50 @@
+Assignment – 12
+Using the operators IN, ANY, and ALL.
+
+1) Write a query that selects all customers whose ratings are equal to or greater than ANY of Serres’.
+
+select cnum, cname, rating from customers
+where rating >= any (
+	select c.rating from customers c, salespeople s 
+	where s.snum = c.snum and s.sname = 'Serres'
+);
+
+
+2) Write a query using ANY or ALL that will find all salespeople who have no customers located in their city.
+
+-- Meaning: The salesperson's city must be different from every customer's city they handle.
+
+select snum, sname, city from salespeople s
+where city != all(
+	select city from customers c -- gets the city of all customers
+	where c.snum = s.snum 	-- the snum of customer and snum of salespeople is same 
+); 
+
+-- Pick a salesperson (s) : SQL picks one salesperson from salespeople s.
+-- Look at all customers handled by that salesperson (because c.snum = s.snum) : Runs the subquery only for that salesperson, because it uses c.snum = s.snum.
+-- Collect the cities of those customers : To Check if their city (s.city) is not equal to all customer cities that belong to them.
+-- If the salesperson's city is NOT EQUAL to ALL of those customer cities (true)→ include salesperson in the result.
+-- Repeat for every salesperson.
+
+
+3) Write a query that selects all orders for amounts greater than any for the customers in London.
+
+select onum, amt from orders 
+where amt > any(
+	select o.amt from orders o , customers c 
+	where o.cnum = c.cnum and c.city = 'London'
+);    
+
+4) Write the above query using MIN or MAX.
+
+select onum, amt from orders 
+where amt > (
+	select min(o.amt) from orders o , customers c 
+	where o.cnum = c.cnum and c.city = 'London'
+);    
+
+select onum, amt from orders 
+where amt > (
+	select max(o.amt) from orders o , customers c 
+	where o.cnum = c.cnum and c.city = 'London'
+);    
